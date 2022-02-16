@@ -50,10 +50,14 @@
                 @include('templates.partials._news', ["posts" => App\Models\Post::orderBy('created_at', 'desc')->take(3)->get()])
                 <!-- End Featured News -->
 
-
+                <div class="col-sm-6 latest-news">
+                    <h2>Lastest FaceBook/Twitter News</h2>
+                    <div class="row" id="news">
                 <!-- Latest News FB -->
                 @include('templates.partials._news_fb')
                 <!-- End Featured News -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -61,6 +65,12 @@
     <!-- Footer -->
     @include('templates.partials._footer')
     @include('templates.partials._scripts')
+    <script>
+    fetch('https://musk-tweet.netlify.app/')
+    .then(res => {
+        console.log(res)
+    })
+    </script>
 </body>
 
 </html>
