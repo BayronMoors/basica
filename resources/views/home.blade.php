@@ -47,15 +47,16 @@
         <div class="container">
             <div class="row">
                 <!-- Featured News -->
-                @include('templates.partials._news', ["posts" => App\Models\Post::orderBy('created_at', 'desc')->take(3)->get()])
+                @include('templates.partials._news', ["posts" => App\Models\Post::orderBy('created_at',
+                'desc')->take(3)->get()])
                 <!-- End Featured News -->
 
                 <div class="col-sm-6 latest-news">
                     <h2>Lastest FaceBook/Twitter News</h2>
                     <div class="row" id="news">
-                <!-- Latest News FB -->
-                @include('templates.partials._news_fb')
-                <!-- End Featured News -->
+                        <!-- Latest News FB -->
+                        @include('templates.partials._news_fb')
+                        <!-- End Featured News -->
                     </div>
                 </div>
             </div>
@@ -66,10 +67,20 @@
     @include('templates.partials._footer')
     @include('templates.partials._scripts')
     <script>
-    fetch('https://musk-tweet.netlify.app/')
-    .then(res => {
-        console.log(res)
-    })
+        const settings = {
+            "url": "https://api.twitter.com/2/users/44196397/tweets?tweet.fields=created_at,author_id",
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+                "Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAACbHZQEAAAAAbJ80NrVCM1wuC3yiGZIW4eBwcF0%3DeA64tynKtX27k5klNjRxWoynv7Xn0Ftdy8X0o83BobtQNsYhgP",
+                "Cookie": "guest_id=v1%3A164536907989742696",
+                "X-CSRF-Token": $('input[name="_token"]').val()
+            },
+        };
+
+        $.ajax(settings).done(function(response) {
+            console.log(response);
+        });
     </script>
 </body>
 
