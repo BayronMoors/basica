@@ -1,6 +1,5 @@
 @php
-$tweets = json_decode(Http::withHeaders(['Authorization' => 'Bearer AAAAAAAAAAAAAAAAAAAAACbHZQEAAAAAIJlNXGTIJ2BRdVV7ESzKcRvS2Qg%3DZWNSy8OrVKLYaYgbIAqTly4MNs9lIBriPtDyxEGy6toLQbJRKq',
-  'Cookie' => 'guest_id=v1%3A164651077356215514'])->get('https://api.twitter.com/2/tweets/search/recent?query=from:ElonMusk&tweet.fields=created_at'))->data;
+$tweets = json_decode(Http::withHeaders()->get('https://api.twitter.com/2/tweets/search/recent?query=from:ElonMusk&tweet.fields=created_at'))->data;
 @endphp
 
 <!-- Latest Tweets -->
