@@ -52,7 +52,7 @@
                 <!-- End Featured News -->
 
                 <div class="col-sm-6 latest-news">
-                    <h2>Lastest FaceBook/Twitter News</h2>
+                    <h2>Elon Musk Latest Tweets</h2>
                     <div class="row" id="news">
                         <!-- Latest News FB -->
                         @include('templates.partials._news_fb')

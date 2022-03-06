@@ -1,9 +1,28 @@
+@php
+$tweets = json_decode(Http::withHeaders(['Authorization' => 'Bearer AAAAAAAAAAAAAAAAAAAAACbHZQEAAAAAIJlNXGTIJ2BRdVV7ESzKcRvS2Qg%3DZWNSy8OrVKLYaYgbIAqTly4MNs9lIBriPtDyxEGy6toLQbJRKq',
+  'Cookie' => 'guest_id=v1%3A164651077356215514'])->get('https://api.twitter.com/2/tweets/search/recent?query=from:ElonMusk&tweet.fields=created_at'))->data;
+@endphp
 
-        <div class="col-sm-12">
-            <div class="caption"><a href="full-width.html">Donec elementum mi vitae enim fermentum lobortis.</a>
+<!-- Latest Tweets -->
+<div class="col-sm-6 latest-news">
+    <h2>Twitter News</h2>
+
+    @for ($i = 0; $i < 3; $i++)
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="caption">
+                    <a href="https://twitter.com/ElonMusk/status/{{ $tweets[$i]->id }}" target="_blank">
+                        {{ Str::words($tweets[$i]->text, 5, '...') }}
+                    </a>
+                </div>
+                <div class="date">{{ date('d F Y', strtotime($tweets[$i]->created_at)) }}</div>
+                <div class="intro">{{ Str::words($tweets[$i]->text, 30, ' [...]') }}
+                    <a href="https://twitter.com/ElonMusk/status/{{ $tweets[$i]->id }}" target="_blank">Read
+                        more...</a>
+                </div>
             </div>
-            <div class="date">16 May 2013 </div>
-            <div class="intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                incididunt ut labore et. <a href="full-width.html">Read more...</a></div>
         </div>
+    @endfor
 
+</div>
+<!-- End Latest Tweets -->

@@ -21,7 +21,7 @@
                     <div class="col-sm-6">
                         <div class="blog-post blog-single-post">
                             <div class="single-post-title">
-                                <h2>{{ Str::limit($post->title, 30) }}</h2>
+                                <h2>{{ Str::limit($post->title, 20) }}</h2>
                             </div>
 
                             <div class="single-post-image">

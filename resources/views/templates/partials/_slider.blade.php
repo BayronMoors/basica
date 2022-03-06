@@ -2,8 +2,9 @@
     <div class="carousel slide">
         <ol class="carousel-indicators">
             <li data-target="#main-slider" data-slide-to="0" class="active"></li>
-            <li data-target="#main-slider" data-slide-to="1"></li>
-            <li data-target="#main-slider" data-slide-to="2"></li>
+            @foreach (App\Models\Work::where('inSlider', '=',  1)->inRandomOrder()->limit(2)->get() as $key => $work)
+            <li data-target="#main-slider" data-slide-to="{{ $key + 1}}"></li>
+            @endforeach
         </ol>
         <div class="carousel-inner">
             <div class="item active" style="background-image: url(img/slides/1.jpg)">
@@ -21,40 +22,24 @@
                 </div>
             </div>
             <!--/.item-->
-            <div class="item" style="background-image: url(img/slides/2.jpg)">
+            @foreach (App\Models\Work::where('inSlider', '=',  1)->inRandomOrder()->limit(2)->get() as $key => $work)
+            <div class="item" style="background-image: url(img/slides/{{$key + 2}}.jpg)">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="carousel-content center centered">
-                                <h2 class="animation animated-item-1">Powerful and Responsive HTML Template</h2>
-                                <p class="animation animated-item-2">Phasellus adipiscing felis a dictum dictum.
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at ligula risus.
+                                <h2 class="animation animated-item-1">{{$work->title}}</h2>
+                                <p class="animation animated-item-2">{{Str::limit($work->content, 50)}}
                                 </p>
                                 <br>
-                                <a class="btn btn-md animation animated-item-3" href="#">Learn More</a>
+                                <a class="btn btn-md animation animated-item-3" href="{{ route('works.show', $work->id)}}">Learn More</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--/.item-->
-            <div class="item" style="background-image: url(img/slides/3.jpg)">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="carousel-content centered">
-                                <h2 class="animation animated-item-1">Works Seamlessly Well on All Devices</h2>
-                                <p class="animation animated-item-2">Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Fusce vitae euismod lacus. Maecenas in tempor lectus. Nam
-                                    mattis, odio ut dapibus ornare, libero. </p>
-                                <br>
-                                <a class="btn btn-md animation animated-item-3" href="#">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/.item-->
+            @endforeach
+            
         </div>
         <!--/.carousel-inner-->
     </div>
